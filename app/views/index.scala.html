@@ -1,0 +1,46 @@
+@import medline.articles.result.Result
+
+@(message: String,result: Result, authors: List[String])
+
+
+@main("Authors directory") {
+
+<style>
+
+    th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: right;
+    background-color: #AEDCEB;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+</style>
+    <table>
+        <tr>
+            <th>   </th>
+            @for(author <- authors) {
+            @if(author.contains(" ")) {
+                <th style="text-align:center">@author.split(" ",2)(0) </br>@author.split(" ",2)(1)</th>
+            } else {
+             <th style="text-align:center">@author</th>>
+            }
+            }
+        </tr>
+
+    @for(i <- 0 until result.matrix.size){
+        <tr>
+
+            <th>@authors.apply(i) </th>
+
+        @for(j <- result.matrix.apply(i)) {
+
+            <td style="width:100px" align="center">@j</td>
+        }
+        </tr>
+    }
+    </table>
+
+
+
+}
